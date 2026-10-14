@@ -11,6 +11,8 @@
   --color-bulb: #ffe14a;
   --color-neon: #3dff6a;
   --color-miss: #ff1f1f;
+  --color-paper: #ffffff;
+  --color-black: #000000;
   --color-muted: #c8bddf;
   --shadow-board: 4px 4px 0 0 var(--color-ink);
   --radius-board: 0px;
@@ -103,4 +105,35 @@
   .enter {
     animation: none;
   }
+}
+
+/* Answer tiles stay white/black even if a browser button style fights the utilities. */
+button.answer-choice,
+button.answer-choice:disabled {
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 1;
+  background-color: var(--color-paper);
+  color: var(--color-black);
+  -webkit-text-fill-color: var(--color-black);
+}
+
+button.answer-choice.is-correct,
+button.answer-choice.is-correct:disabled {
+  background-color: var(--color-neon);
+  color: var(--color-black);
+  -webkit-text-fill-color: var(--color-black);
+}
+
+button.answer-choice.is-wrong,
+button.answer-choice.is-wrong:disabled {
+  background-color: var(--color-miss);
+  color: var(--color-black);
+  -webkit-text-fill-color: var(--color-black);
+}
+
+button.answer-choice .answer-letter {
+  background-color: var(--color-paper);
+  color: var(--color-black);
+  -webkit-text-fill-color: var(--color-black);
 }

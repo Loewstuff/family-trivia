@@ -654,12 +654,12 @@ export function Showdown({
                     key={`${state.qIndex}-${index}`}
                     type="button"
                     disabled={lockedOut}
-                    className={`${press} flex min-h-16 items-center gap-3 px-3 text-left text-lg font-extrabold text-ink disabled:active:scale-100 ${
-                      showGood ? "mark-good" : showBad ? "mark-bad" : "bg-white"
+                    className={`${press} answer-choice flex min-h-16 items-center gap-3 px-3 text-left text-lg font-extrabold disabled:active:scale-100 ${
+                      showGood ? "is-correct" : showBad ? "is-wrong" : ""
                     }`}
                     onClick={() => pick(index)}
                   >
-                    <span className="grid size-9 shrink-0 place-items-center border-4 border-ink bg-white font-display text-ink">
+                    <span className="answer-letter grid size-9 shrink-0 place-items-center border-4 border-ink font-display">
                       {LETTERS[index]}
                     </span>
                     <span className="min-w-0 flex-1 leading-tight">{choice}</span>
