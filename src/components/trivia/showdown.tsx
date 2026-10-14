@@ -26,13 +26,12 @@ import {
 import { QUESTIONS } from "@/lib/trivia/questions";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
-const CHOICE_STYLE = [
+const AVATAR = [
   "bg-hot text-cream",
   "bg-electric text-cream",
   "bg-bulb text-ink",
   "bg-neon text-ink",
 ] as const;
-const AVATAR = CHOICE_STYLE;
 
 const press =
   "border-4 border-ink shadow-board transition-transform duration-150 ease-out enabled:active:scale-[0.96]";
@@ -642,12 +641,8 @@ export function Showdown({
               {question.choices.map((choice, index) => {
                 const mine = state.answers[p2p.selfId];
                 const isCorrect = index === question.answer;
-                const showGood =
-                  (state.phase === "reveal" && isCorrect) ||
-                  (mine === index && isCorrect && (state.locked || state.phase === "reveal"));
+                const showGood = mine === index && isCorrect && state.winnerId === p2p.selfId;
                 const showBad = mine === index && !isCorrect;
-                const dim =
-                  state.phase === "reveal" && !isCorrect && mine !== index ? "opacity-50" : "";
                 const lockedOut =
                   state.phase !== "question" ||
                   state.locked ||
@@ -659,12 +654,12 @@ export function Showdown({
                     key={`${state.qIndex}-${index}`}
                     type="button"
                     disabled={lockedOut}
-                    className={`${press} flex min-h-16 items-center gap-3 px-3 text-left text-lg font-extrabold disabled:active:scale-100 ${
-                      showGood ? "mark-good" : showBad ? "mark-bad" : CHOICE_STYLE[index]
-                    } ${dim}`}
+                    className={`${press} flex min-h-16 items-center gap-3 px-3 text-left text-lg font-extrabold text-ink disabled:active:scale-100 ${
+                      showGood ? "mark-good" : showBad ? "mark-bad" : "bg-white"
+                    }`}
                     onClick={() => pick(index)}
                   >
-                    <span className="grid size-9 shrink-0 place-items-center border-4 border-ink bg-cream font-display text-ink">
+                    <span className="grid size-9 shrink-0 place-items-center border-4 border-ink bg-white font-display text-ink">
                       {LETTERS[index]}
                     </span>
                     <span className="min-w-0 flex-1 leading-tight">{choice}</span>

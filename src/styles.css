@@ -10,6 +10,7 @@
   --color-electric: #2f6bff;
   --color-bulb: #ffe14a;
   --color-neon: #3dff6a;
+  --color-miss: #ff1f1f;
   --color-muted: #c8bddf;
   --shadow-board: 4px 4px 0 0 var(--color-ink);
   --radius-board: 0px;
@@ -69,7 +70,7 @@
   }
 
   .late-tint {
-    background: color-mix(in srgb, var(--color-hot) 24%, transparent);
+    background: color-mix(in srgb, var(--color-miss) 42%, transparent);
   }
 
   .mark-good {
@@ -79,8 +80,8 @@
   }
 
   .mark-bad {
-    background-color: var(--color-hot);
-    color: var(--color-cream);
+    background-color: var(--color-miss);
+    color: var(--color-ink);
     animation: flash-pop 480ms ease-out;
   }
 }
