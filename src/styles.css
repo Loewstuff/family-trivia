@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Lilita One", "Arial Black", "Impact", system-ui, sans-serif;
+  --font-sans: "Outfit", "Avenir Next", "Trebuchet MS", sans-serif;
+  --color-stage: #1b1033;
+  --color-ink: #14081c;
+  --color-cream: #fff4d6;
+  --color-hot: #ff2d8a;
+  --color-electric: #2f6bff;
+  --color-bulb: #ffe14a;
+  --color-neon: #3dff6a;
+  --color-muted: #c8bddf;
+  --shadow-board: 4px 4px 0 0 var(--color-ink);
+  --radius-board: 0px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body {
+    background: var(--color-stage);
+    color: var(--color-cream);
+    min-height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .bulb-strip {
+    height: 0.875rem;
+    background-color: var(--color-ink);
+    background-image:
+      radial-gradient(circle at 0.55rem 0.44rem, var(--color-hot) 0 0.28rem, transparent 0.32rem),
+      radial-gradient(circle at 1.45rem 0.44rem, var(--color-bulb) 0 0.28rem, transparent 0.32rem),
+      radial-gradient(circle at 2.35rem 0.44rem, var(--color-electric) 0 0.28rem, transparent 0.32rem),
+      radial-gradient(circle at 3.25rem 0.44rem, var(--color-neon) 0 0.28rem, transparent 0.32rem);
+    background-size: 3.7rem 0.875rem;
+    background-repeat: repeat-x;
+  }
+
+  .code-track {
+    letter-spacing: 0.28em;
+  }
+
+  .late-tint {
+    background: color-mix(in srgb, var(--color-hot) 24%, transparent);
+  }
+
+  .mark-good {
+    background-color: var(--color-neon);
+    color: var(--color-ink);
+    animation: flash-pop 480ms ease-out;
+  }
+
+  .mark-bad {
+    background-color: var(--color-hot);
+    color: var(--color-cream);
+    animation: flash-pop 480ms ease-out;
+  }
+}
+
+@keyframes flash-pop {
+  0% {
+    filter: brightness(1.7);
+    transform: scale(0.98);
+  }
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-good,
+  .mark-bad,
+  .enter {
+    animation: none;
+  }
+}
